@@ -23,16 +23,16 @@ class CustomForm extends Form{
      * CustomForm constructor.
      * @param string $title
      * @param Element[] $elements
-     * @param Closure $onSubmit
+     * @param Closure|null $onSubmit
      * @param Closure|null $onClose
      */
     public function __construct(
         string $title,
         protected array $elements,
-        protected Closure $onSubmit,
+        protected ?Closure $onSubmit = null,
         protected ?Closure $onClose = null,
     ){
-        Utils::validateCallableSignature(function (Player $player, CustomFormResponse $response){}, $onSubmit);
+        if ($onSubmit !== null) Utils::validateCallableSignature(function (Player $player){}, $onSubmit);
         if ($onClose !== null) Utils::validateCallableSignature(function (Player $player){}, $onClose);
         parent::__construct($title);
     }

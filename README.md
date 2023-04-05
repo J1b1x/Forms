@@ -193,3 +193,16 @@ $player->sendForm(new CustomForm("Enter data", [
 	}),
 ]));
 ```
+
+### Uncloseable form
+
+### An uncloseable form can be useful if you permanently want to display something to the player
+```php
+$player->sendForm(new MenuForm(
+    "§cMaintenance",
+    "Hello {$player->getName()}! Unfortunately we are currently in maintenance to update some server features!\nPlease come back once we announce that we're done with the update.",
+    [],
+    null,
+    Form::uncloseable()
+));
+```

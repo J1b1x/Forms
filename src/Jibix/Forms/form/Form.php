@@ -1,5 +1,7 @@
 <?php
 namespace Jibix\Forms\form;
+use Closure;
+use pocketmine\player\Player;
 
 
 /**
@@ -10,6 +12,17 @@ namespace Jibix\Forms\form;
  * @project Forms
  */
 abstract class Form implements \pocketmine\form\Form{
+
+    public static function uncloseable(): Closure{
+        return function (Player $player): void{
+            Closure::bind(function (Player $player): void{
+                $forms = $player->forms;
+                if (!$forms) return;
+                $player->sendForm($forms[array_key_first($forms)]);
+            }, $this, Player::class)($player);
+        };
+    }
+
 
     public function __construct(protected string $title){}
 

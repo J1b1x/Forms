@@ -35,7 +35,7 @@ class ServerSettingsForm extends CustomForm{
     }
 
     public final function send(Player $player): void{
-        Closure::bind(function (Player $player) {
+        Closure::bind(function (Player $player): void{
             $id = $player->formIdCounter++;
             if ($player->getNetworkSession()->sendDataPacket(ServerSettingsResponsePacket::create(
                 $id,

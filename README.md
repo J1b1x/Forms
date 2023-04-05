@@ -23,6 +23,8 @@ This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms libr
 + [CustomForm](#customform)
     - [Using CustomForm with strict-typed API](#using-customform-with-strict-typed-api)
     - [Using CustomForm with less strict-typed API](#using-customform-with-less-strict-typed-api)
++ [Uncloseable Form](#uncloseable-form)
+  - [Sending an uncloseable form](#an-uncloseable-form-can-be-useful-if-you-permanently-want-to-display-something-to-the-player)
 
 ### ServerSettingsForm
 

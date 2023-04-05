@@ -2,6 +2,7 @@
 namespace Jibix\Forms\form\type;
 use Closure;
 use Jibix\Forms\element\Element;
+use Jibix\Forms\element\type\Label;
 use Jibix\Forms\form\Form;
 use Jibix\Forms\form\response\CustomFormResponse;
 use pocketmine\form\FormValidationException;
@@ -55,11 +56,12 @@ class CustomForm extends Form{
             $element = $this->elements[$index] ?? throw new FormValidationException("Element at offset $index does not exist");
             try  {
                 $element->setValue($value);
-            } catch(FormValidationException $e) {
+            } catch (FormValidationException $e) {
                 throw new FormValidationException("Validation failed for element " . $element::class . ": " . $e->getMessage(), 0, $e);
             }
         }
         foreach ($this->elements as $element) {
+            if ($element instanceof Label) continue;
             $element->getOnSubmit()?->__invoke($player, $element);
         }
 

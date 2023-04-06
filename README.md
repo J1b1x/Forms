@@ -47,7 +47,7 @@ protected function onEnable(): void{
 ```
 
 ## Image fix
-#### Image fix is a workaround for a MCPE MenuForm bug, where url images take ages to load
+#### Image fix is a workaround for a MCPE MenuForm bug, where url button images take ages to load
 #### To make this work you only need to do the [registration](#registration)
 
 ### ServerSettingsForm

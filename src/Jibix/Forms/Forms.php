@@ -3,13 +3,11 @@ namespace Jibix\Forms;
 use Jibix\Forms\event\ServerSettingsFormEvent;
 use Jibix\Forms\form\Form;
 use Jibix\Forms\form\type\MenuForm;
-use Jibix\Forms\menu\Button;
 use Jibix\Forms\menu\type\BackButton;
 use Jibix\Forms\menu\type\CloseButton;
 use Jibix\Forms\util\AutoBackEntry;
 use Jibix\Forms\util\Utils;
 use pocketmine\event\EventPriority;
-use pocketmine\event\player\PlayerToggleSneakEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\event\server\DataPacketSendEvent;
 use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;
@@ -137,12 +135,9 @@ final class Forms{
                 if (
                     $button instanceof BackButton &&
                     $button->getOnSubmit() === null
-                ) $button->setOnSubmit(function (Player $player) use ($previous): void{
-                    $player->sendForm($previous);
-                });
+                ) $button->setOnSubmit(fn (Player $player) => $player->sendForm($previous));
             }
         }
-        //Setting onClose
         if ($form->getOnClose() === null) $form->setOnClose(fn (Player $player) => $player->sendForm($previous));
     }
 

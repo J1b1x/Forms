@@ -1,5 +1,6 @@
 <?php
 namespace Jibix\Forms\menu;
+use JsonSerializable;
 
 
 /**
@@ -9,8 +10,7 @@ namespace Jibix\Forms\menu;
  * @date 05.04.2023 - 16:36
  * @project Forms
  */
-class Image implements \JsonSerializable{
-
+class Image implements JsonSerializable{
 
     private function __construct(
         protected string $data,

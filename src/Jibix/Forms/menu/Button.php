@@ -1,6 +1,8 @@
 <?php
 namespace Jibix\Forms\menu;
 use Closure;
+use Exception;
+use JsonSerializable;
 use pocketmine\player\Player;
 use pocketmine\utils\Utils;
 
@@ -12,7 +14,7 @@ use pocketmine\utils\Utils;
  * @date 05.04.2023 - 16:35
  * @project Forms
  */
-class Button implements \JsonSerializable{
+class Button implements JsonSerializable{
 
     protected int $value;
 
@@ -41,7 +43,7 @@ class Button implements \JsonSerializable{
     }
 
     public function getValue(): int{
-        return $this->value ?? throw new \Exception("Trying to access an uninitialized value");
+        return $this->value ?? throw new Exception("Trying to access an uninitialized value");
     }
 
     public function setValue(int $value): self{

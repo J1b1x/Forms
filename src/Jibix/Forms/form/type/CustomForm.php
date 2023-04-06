@@ -4,8 +4,8 @@ use Closure;
 use Jibix\Forms\element\Element;
 use Jibix\Forms\element\type\Label;
 use Jibix\Forms\form\Form;
+use Jibix\Forms\form\response\autoback\AutoBackHandler;
 use Jibix\Forms\form\response\CustomFormResponse;
-use Jibix\Forms\Forms;
 use pocketmine\form\FormValidationException;
 use pocketmine\player\Player;
 use pocketmine\utils\Utils;
@@ -69,7 +69,7 @@ class CustomForm extends Form{
                 throw new FormValidationException("Validation failed for element " . $element::class . ": " . $e->getMessage(), 0, $e);
             }
         }
-        Forms::storeLastForm($player, $this);
+        AutoBackHandler::storeLastForm($player, $this);
         foreach ($this->elements as $element) {
             if ($element instanceof Label) continue;
             $element->getOnSubmit()?->__invoke($player, $element);

@@ -6,7 +6,7 @@
 This is a PocketMine-MP 4.0 form library with PHP 8.0 support and high quality code
 
 ## Credits
-This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms library](https://github.com/Frago9876543210/forms) and also includes a ServerSettingsForm which is inspired of [skymin's](https://github.com/sky-min) [ServerSettingsForm](https://github.com/sky-min/ServerSettingForm) virion. 
+This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms library](https://github.com/Frago9876543210/forms) and also includes a ServerSettingsForm which is inspired of [skymin's](https://github.com/sky-min) [ServerSettingsForm](https://github.com/sky-min/ServerSettingForm) virion and a [Image loading fix](#image-fix) which is inspired by [Muqsit's](https://github.com/Muqsit) [FormImagesFix](https://github.com/Muqsit/FormImagesFix) plugin. 
 
 ## Code samples
 
@@ -14,7 +14,7 @@ This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms libr
 + [Auto-back](#auto-back)
     - [What is "auto-back"?](#auto-back-is-a-feature-that-sends-the-previous-opened-form-to-the-player-once-they-close-a-form-or-click-on-a-back-button-it-also-overwrites-back-buttons-in-a-menuformmenuform-with-close-buttons-if-theres-no-form-to-go-back-to)
     - [Toggling it](#if-you-want-to-use-the-auto-back-feature-you-just-need-to-do)
-+ [MenuForm](#menuform)
++ [Image Fix](#image-fix)
 + [ServerSettingsForm](#serversettingsform)
 + [ModalForm](#modalform)
     - [Using ModalForm to represent "yes" / "no" button clicks as `bool` in closure](#using-modalform-to-represent-yes--no-button-clicks-as-bool-in-closure)
@@ -31,7 +31,7 @@ This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms libr
 
 ### Registration
 
-#### In order to use [ServerSettingsForms](#serversettingsform) and the [auto-back](#autoback) feature you first need to **register** the packet handler by doing
+#### In order to use the [ServerSettingsForms](#serversettingsform), [ImageFix](#image-fix) and the [auto-back](#autoback) feature you first need to **register** the packet handler by doing
 ```php
 protected function onEnable(): void{
     \Jibix\Forms\Forms::register($this);
@@ -45,6 +45,10 @@ protected function onEnable(): void{
 ```php
 \Jibix\Forms\Forms::setAutoBack(true);
 ```
+
+## Image fix
+#### Image fix is a workaround for a MCPE MenuForm bug, where url images take ages to load
+#### To make this work you only need to do the [registration](#registration)
 
 ### ServerSettingsForm
 

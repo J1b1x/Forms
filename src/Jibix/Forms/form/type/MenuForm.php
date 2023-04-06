@@ -2,7 +2,7 @@
 namespace Jibix\Forms\form\type;
 use Closure;
 use Jibix\Forms\form\Form;
-use Jibix\Forms\Forms;
+use Jibix\Forms\form\response\autoback\AutoBackHandler;
 use Jibix\Forms\menu\Button;
 use pocketmine\form\FormValidationException;
 use pocketmine\player\Player;
@@ -66,7 +66,7 @@ class MenuForm extends Form{
         if ($data === null) {
             $this->onClose?->__invoke($player);
         } elseif (is_int($data)) {
-            Forms::storeLastForm($player, $this);
+            AutoBackHandler::storeLastForm($player, $this);
             $button = $this->getButton($data)->setValue($data);
             $button->getOnSubmit()?->__invoke($player, $button);
             $this->onSubmit?->__invoke($player, $button);

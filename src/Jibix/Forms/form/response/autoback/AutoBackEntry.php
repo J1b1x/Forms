@@ -1,11 +1,11 @@
 <?php
-namespace Jibix\Forms\util;
+namespace Jibix\Forms\form\response\autoback;
 use Jibix\Forms\form\Form;
 
 
 /**
  * Class AutoBackEntry
- * @package Jibix\Forms\util
+ * @package Jibix\Forms\form\response\autoback
  * @author Jibix
  * @date 06.04.2023 - 03:47
  * @project Forms

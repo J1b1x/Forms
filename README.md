@@ -10,9 +10,12 @@ This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms libr
 
 ## Code samples
 
++ [Registration](#registration)
++ [Auto-back](#auto-back)
+    - [What is "auto-back"?](#auto-back-is-a-feature-that-sends-the-previous-opened-form-to-the-player-once-they-close-a-form-or-click-on-a-back-button-it-also-overwrites-back-buttons-in-a-menuformmenuform-with-close-buttons-if-theres-no-form-to-go-back-to)
+    - [Toggling it](#if-you-want-to-use-the-auto-back-feature-you-just-need-to-do)
++ [MenuForm](#menuform)
 + [ServerSettingsForm](#serversettingsform)
-  - [Registering the packet handler](#in-order-to-send-a-serversettingsform-you-first-need-to-register-the-packet-handler-by-doing)
-  - [Sending a ServerSettingsForm](#in-your-plugin-base-once-you-have-registered-the-packet-handler-you-can-just-use-the-serversettingsformevent)
 + [ModalForm](#modalform)
     - [Using ModalForm to represent "yes" / "no" button clicks as `bool` in closure](#using-modalform-to-represent-yes--no-button-clicks-as-bool-in-closure)
     - [Short version of ModalForm to confirm any action](#short-version-of-modalform-to-confirm-any-action)
@@ -26,24 +29,34 @@ This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms libr
 + [Uncloseable Form](#uncloseable-form)
   - [Sending an uncloseable form](#an-uncloseable-form-can-be-useful-if-you-permanently-want-to-display-something-to-the-player)
 
-### ServerSettingsForm
+### Registration
 
-#### The ServerSettingsForm is similar to a [CustomForm](#customform) and has the same elements, but will be displayed in the player's game-settings ui
-#### In order to send a ServerSettingsForm you first need to **register** the packet handler by doing
-
+#### In order to use [ServerSettingsForms](#serversettingsform) and the [auto-back](#autoback) feature you first need to **register** the packet handler by doing
 ```php
 protected function onEnable(): void{
     \Jibix\Forms\Forms::register($this);
 }
 ```
-#### in your plugin base. Once you have registered the packet handler, you can just use the ServerSettingsFormEvent
+#### Note: You only need to do this if you use this plugin as a virion, otherwise it's handled by the [Main class](https://github.com/J1b1x/Forms/blob/master/src/Jibix/Forms/Main.php)
+
+### Auto-back
+#### Auto-back is a feature that sends the previous opened form to the player once they close a form or click on a back button. It also overwrites back buttons in a [MenuForm](#menuform) with close buttons if there's no form to go back to
+#### If you want to use the auto-back feature, you just need to do
+```php
+\Jibix\Forms\Forms::setAutoBack(true);
+```
+
+### ServerSettingsForm
+
+#### The ServerSettingsForm is similar to a [CustomForm](#customform) and has the same elements, but will be displayed in the player's game-settings ui
+#### Once you have registered the packet handler, you can just use the ServerSettingsFormEvent
 
 ```php
 public function onServerSettingsForm(ServerSettingsFormEvent $event): void{
     $player = $event->getPlayer();
     if (!$player->hasPermission(DefaultPermissions::ROOT_OPERATOR)) return; //Not an operator
     (new ServerSettingsForm(
-        "Title!",
+        "§bServer settings",
         [
             new Label("Want to adjust some server settings? Just do it!"),
             new Input("Motd", "§cBest Server!", Server::getInstance()->getNetwork()->getName(), function (Player $player, Input $input): void{
@@ -90,12 +103,12 @@ $player->sendForm(ModalForm::confirm("Teleport request", "Do you want to accept 
 $player->sendForm(new MenuForm("Select server", "Choose server", [
 	//buttons without icon
 	new Button("SkyWars #1"),
-	new Button("SkyWars #2"),
 	//URL and path are supported for image
-	new Button("BedWars #1", null, Image::url("https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f0/Melon_JE2_BE2.png")),
-	new Button("BedWars #2", null, Image::path("textures/items/apple.png")),
+	new Button("SkyWars #2", null, Image::url("https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f0/Melon_JE2_BE2.png")),
+	new Button("SkyWars #3", null, Image::path("textures/items/apple.png")),
 	//If you have some dynamic images you can use Image::detect
-	new Button("Dyamic #1", null, Image::detect($image))
+	new Button("SkyWars #4", null, Image::detect($image)),
+	new BackButton(), //Dynamic back button
 ], function (Player $player, Button $selected): void{
 	$player->sendMessage("You selected: " . $selected->getText());
 	$player->sendMessage("Index of button: " . $selected->getValue());
@@ -113,11 +126,7 @@ foreach ($objectArray as $key => $object) {
         //Do something with $object
     })
 }
-$buttons[] = Button::back("Do you want to go back?", function (Player $player): void{
-    $player->sendMessage("You clicked on the back button!");
-    //Go back
-}); //returns a "Back button" with a nice image
-$buttons[] = Button::close(); //returns a "Close Button" with a nice image
+$buttons[] = new BackButton(); //Dynamic back button
 $player->sendForm(new MenuForm("Select key", "Choose key", $buttons));
 ```
 

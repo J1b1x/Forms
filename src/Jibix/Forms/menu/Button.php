@@ -14,15 +14,6 @@ use pocketmine\utils\Utils;
  */
 class Button implements \JsonSerializable{
 
-    public static function back(string $text = "§cBack", ?Closure $onSubmit = null, ?Image $image = null): self{
-        return new self($text, $onSubmit, $image ?? Image::path("textures/ui/refresh_light"));
-    }
-
-    public static function close(string $text = "§cClose", ?Closure $onSubmit = null, ?Image $image = null): self{
-        return new self($text, $onSubmit, $image ?? Image::path("textures/ui/cancel"));
-    }
-
-
     protected int $value;
 
     public function __construct(

@@ -2,6 +2,7 @@
 namespace Jibix\Forms\form\type;
 use Closure;
 use Jibix\Forms\form\Form;
+use Jibix\Forms\Forms;
 use Jibix\Forms\menu\Button;
 use pocketmine\form\FormValidationException;
 use pocketmine\player\Player;
@@ -37,6 +38,18 @@ class MenuForm extends Form{
         return $this->buttons;
     }
 
+    public function getOnClose(): ?Closure{
+        return $this->onClose;
+    }
+
+    public function setOnClose(?Closure $onClose): void{
+        $this->onClose = $onClose;
+    }
+
+    public function overwrite(int $key, Button $button): void{
+        $this->buttons[$key] = $button;
+    }
+
 
     protected function getType(): string{
         return "form";
@@ -57,6 +70,7 @@ class MenuForm extends Form{
         if ($data === null) {
             $this->onClose?->__invoke($player);
         } elseif (is_int($data)) {
+            Forms::storeLastForm($player, $this);
             $button = $this->getButton($data)->setValue($data);
             $button->getOnSubmit()?->__invoke($player, $button);
             $this->onSubmit?->__invoke($player, $button);

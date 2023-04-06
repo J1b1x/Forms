@@ -20,6 +20,13 @@ use pocketmine\utils\Utils;
  */
 class CustomForm extends Form{
 
+    public static function fromData(array $elements, array $data): array{
+        return array_map(
+            fn (Element $element): Element => $element instanceof Label ? $element : $element->setDefault($data[$element->getText()] ?? $element->getDefault()),
+            $elements
+        );
+    }
+
     /**
      * CustomForm constructor.
      * @param string $title

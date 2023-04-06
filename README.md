@@ -26,8 +26,9 @@ This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms libr
 + [CustomForm](#customform)
     - [Using CustomForm with strict-typed API](#using-customform-with-strict-typed-api)
     - [Using CustomForm with less strict-typed API](#using-customform-with-less-strict-typed-api)
+    - [From/to Data CustomForm](#fromto-data-customform-this-can-be-useful-if-you-want-to-send-the-same-ui-again-but-with-some-changes-such-as-an-error-message-label)
 + [Uncloseable Form](#uncloseable-form)
-  - [Sending an uncloseable form](#an-uncloseable-form-can-be-useful-if-you-permanently-want-to-display-something-to-the-player)
+    - [Sending an uncloseable form](#an-uncloseable-form-can-be-useful-if-you-permanently-want-to-display-something-to-the-player)
 
 ### Registration
 
@@ -175,7 +176,6 @@ $player->sendForm(new CustomForm("Enter data", [
 	new StepSlider("Select product", ["beer", "cheese", "cola"]),
 	new Toggle("Creative", $player->isCreative()),
 ], function (Player $player, CustomFormResponse $response): void{
-	/** @var bool $enableCreative */ //type-hint for phpstan
 	[$product1, $username, $count, $product2, $enableCreative] = $response->getValues();
 
 	$player->sendMessage("You selected: $product1");
@@ -207,6 +207,35 @@ $player->sendForm(new CustomForm("Enter data", [
 	    $player->setGamemode($toggle->getValue() ? GameMode::CREATIVE() : GameMode::SURVIVAL());
 	}),
 ]));
+```
+
+####From/to Data CustomForm. This can be useful if you want to send the same ui again, but with some changes, such as an error message label
+```php
+public function sendCustomForm(Player $player, array $data = [], ?string $message = null){
+    $player->sendForm(new CustomForm(
+        "Enter rank data",
+        CustomForm::fromData([
+            new Label($message ?? "Enter the ranks data!")
+	        new Input("Name", "Owner"),
+	        new Slider("Price", 0, 100, 1)
+        ], $data),
+        function (Player $player, CustomFormResponse $response): void{
+            $data = $response->__toData();
+            [$name, $price] = $response->getElements();
+            $error = match (true) {
+                strlen($name) < 4 => "§cThe name must be at least 4 chars!",
+                strlen($name) > 20 => "§cThe name must be shorter than 20 chars!",
+                //other checks
+                default => null
+            };
+            if ($error !== null) {
+                $this->sendCustomForm($player, $data, $error);
+                return;
+            }
+            //Do something with the rank data
+        }
+    ));
+}
 ```
 
 ### Uncloseable form

@@ -63,4 +63,13 @@ class CustomFormResponse{
         }
         return $values;
     }
+
+    public function __toData(): array{
+        $data = [];
+        foreach ($this->getElements() as $element) {
+            if ($element instanceof Label) continue;
+            $data[$element->getText()] = $element->getValue();
+        }
+        return $data;
+    }
 }

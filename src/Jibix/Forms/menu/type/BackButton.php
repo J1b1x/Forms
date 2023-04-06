@@ -14,7 +14,13 @@ use Jibix\Forms\menu\Image;
  */
 class BackButton extends Button{
 
+    public const BACK_ID = "back";
+
     public function __construct(string $text = "§cBack", ?Closure $onSubmit = null, ?Image $image = null){
         parent::__construct($text, $onSubmit, $image ?? Image::path("textures/ui/refresh_light"));
+    }
+
+    public function jsonSerialize(): array{
+        return array_merge([self::BACK_ID => true], parent::jsonSerialize());
     }
 }

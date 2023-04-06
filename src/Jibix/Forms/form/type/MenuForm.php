@@ -46,10 +46,6 @@ class MenuForm extends Form{
         $this->onClose = $onClose;
     }
 
-    public function overwrite(int $key, Button $button): void{
-        $this->buttons[$key] = $button;
-    }
-
 
     protected function getType(): string{
         return "form";

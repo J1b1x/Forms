@@ -96,15 +96,6 @@ final class Forms{
                 }
             }
         }, EventPriority::MONITOR, $plugin);
-        Server::getInstance()->getPluginManager()->registerEvent(PlayerToggleSneakEvent::class, static function (PlayerToggleSneakEvent $event): void{
-            $event->getPlayer()->sendForm(new MenuForm("§bMain page", "", [
-                new Button("§aSecond page", fn (Player $player) => $player->sendForm(new MenuForm("§aSecond page", "", [
-                    new Button("idk3", fn (Player $player) => $player->sendForm(new MenuForm("idk3", "", [new BackButton()]))),
-                    new BackButton(),
-                ]))),
-                new BackButton()
-            ]));
-        }, EventPriority::MONITOR, $plugin);
 
     }
 

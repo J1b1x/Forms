@@ -22,6 +22,14 @@ abstract class SelectElement extends Element{
         parent::__construct($text, $onSubmit);
     }
 
+    public function getOptions(): array{
+        return $this->options;
+    }
+
+    public function getDefault(): int{
+        return $this->default;
+    }
+
     public function getSelectedOption(): string{
         return $this->options[$this->getValue()];
     }

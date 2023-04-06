@@ -1,5 +1,6 @@
 <?php
 namespace Jibix\Forms\element;
+use Closure;
 use pocketmine\form\FormValidationException;
 
 
@@ -16,8 +17,9 @@ abstract class SelectElement extends Element{
         string $text,
         protected array $options = [],
         protected int $default = 0,
+        ?Closure $onSubmit = null
     ){
-        parent::__construct($text);
+        parent::__construct($text, $onSubmit);
     }
 
     public function getSelectedOption(): string{

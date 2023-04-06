@@ -27,6 +27,7 @@ final class AutoBackHandler{
     private static array $entries = [];
 
     public static function handleForm(Player $player, int $formId, string $formData): ?string{
+        //God, how much i hate PM/Dylan sometimes... This shit could be done within like 3 lines of code if there was an event with the actual form object
         $tick = Server::getInstance()->getTick();
         foreach (self::$entries as $name => $storage) {
             if ($storage->getExpireTick() <= $tick) unset(self::$entries[$name]);

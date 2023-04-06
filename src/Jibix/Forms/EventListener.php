@@ -37,7 +37,6 @@ class EventListener implements Listener{
         foreach ($event->getPackets() as $packet) {
             if ($packet instanceof ModalFormRequestPacket) {
                 foreach ($event->getTargets() as $target) {
-                    //God, how much i hate PM/Dylan sometimes... This shit could be done within like 3 lines of code if there was an event with the actual form object
                     if (($player = $target->getPlayer()) === null) continue;
                     if (Forms::isAutoBack() && ($data = AutoBackHandler::handleForm($player, $packet->formId, $packet->formData)) !== null) $packet->formData = $data;
                     ImageFixHandler::handleRequest($target);

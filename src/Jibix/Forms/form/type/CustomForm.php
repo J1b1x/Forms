@@ -40,7 +40,7 @@ class CustomForm extends Form{
         protected ?Closure $onSubmit = null,
         protected ?Closure $onClose = null,
     ){
-        if ($onSubmit !== null) Utils::validateCallableSignature(function (Player $player){}, $onSubmit);
+        if ($onSubmit !== null) Utils::validateCallableSignature(function (Player $player, CustomFormResponse $response){}, $onSubmit);
         if ($onClose !== null) Utils::validateCallableSignature(function (Player $player){}, $onClose);
         parent::__construct($title);
     }

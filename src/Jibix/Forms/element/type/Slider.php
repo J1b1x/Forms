@@ -28,7 +28,7 @@ class Slider extends Element{
         $this->min = min($this->min, $this->max);
         $this->max = max($this->min, $this->max);
         $this->default = $default === null ? $this->min : min($this->max, max($this->min, $default));
-        $this->step = min(0, $this->step);
+        $this->step = max(0, $this->step);
     }
 
     public function getMin(): float{

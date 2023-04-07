@@ -33,8 +33,9 @@ final class ServerSettingsHandler{
 
     public static function handleResponse(NetworkSession $session): void{
         $id = spl_object_id($session);
+        if (!isset(self::$queue[$id])) return;
         if (self::$queue[$id]-- == 0) {
-            (new ServerSettingsFormEvent())->call();
+            (new ServerSettingsFormEvent($session->getPlayer()))->call();
             unset(self::$queue[$id]);
         } else {
             $session->sendDataPacket(NetworkStackLatencyPacket::request(self::$waitId));

@@ -26,7 +26,7 @@ final class ImageFixHandler{
     private static array $callbacks = [];
 
     public static function initialize(): void{
-        self::$waitId = ServerSettingsHandler::getWaitId();
+        self::$waitId = ServerSettingsHandler::getWaitId() / 2;
     }
 
     public static function getWaitId(): int{
@@ -36,8 +36,8 @@ final class ImageFixHandler{
     public static function handleRequest(NetworkSession $session): void{
         Forms::getScheduler()?->scheduleDelayedTask(new ClosureTask(function () use ($session): void{
             if (($player = $session->getPlayer()) === null || !$player->isOnline()) return;
-            $session->sendDataPacket(NetworkStackLatencyPacket::create($timestamp = ++self::$waitId, true));
-            self::$callbacks[$player->getId()][$timestamp] = function () use ($player, $session): void{
+            $session->sendDataPacket(NetworkStackLatencyPacket::create(++self::$waitId, true));
+            self::$callbacks[$player->getId()][self::$waitId] = function () use ($player, $session): void{
                 if (!$player->isOnline()) return;
                 $times = self::REPEAT_TIMES;
                 Forms::getScheduler()?->scheduleRepeatingTask(new ClosureTask(static function () use ($player, $session, &$times): void{

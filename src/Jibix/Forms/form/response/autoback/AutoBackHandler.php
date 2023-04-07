@@ -77,7 +77,7 @@ final class AutoBackHandler{
     private static function applyAutoBack(Player $player, Form $form): void{
         $name = $player->getName();
         $previous = self::$entries[$name]?->getPreviousForm();
-        if (($menu = !$form instanceof MenuForm) && !$form instanceof CustomForm) return;
+        if ((!$menu = $form instanceof MenuForm) && !$form instanceof CustomForm) return;
         if ($menu) {
             //Setting onSubmit of back buttons
             foreach ($form->getButtons() as $button) {

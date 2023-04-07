@@ -30,6 +30,10 @@ abstract class SelectElement extends Element{
         return $this->default;
     }
 
+    public function setDefault(int $default): void{
+        $this->default = $default;
+    }
+
     public function getSelectedOption(): string{
         return $this->options[$this->getValue()];
     }

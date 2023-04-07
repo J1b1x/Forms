@@ -31,6 +31,10 @@ class Input extends Element{
         return $this->default;
     }
 
+    public function setDefault(string $default): void{
+        $this->default = $default;
+    }
+
 
     protected function getType(): string{
         return "input";

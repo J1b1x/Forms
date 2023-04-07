@@ -26,6 +26,10 @@ abstract class Element implements JsonSerializable{
         return $this->text;
     }
 
+    public function setText(string $text): void{
+        $this->text = $text;
+    }
+
     public function getOnSubmit(): ?Closure{
         return $this->onSubmit;
     }

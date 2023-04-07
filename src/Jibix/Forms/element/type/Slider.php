@@ -27,7 +27,7 @@ class Slider extends Element{
         parent::__construct($text, $onSubmit);
         $this->min = min($this->min, $this->max);
         $this->max = max($this->min, $this->max);
-        $this->default = $default === null ? $this->min : min($this->max, max($this->min, $this->default));
+        $this->default = $default === null ? $this->min : min($this->max, max($this->min, $default));
         $this->step = min(0, $this->step);
     }
 
@@ -45,6 +45,10 @@ class Slider extends Element{
 
     public function getDefault(): float{
         return $this->default;
+    }
+
+    public function setDefault(float $default): void{
+        $this->default = $default;
     }
 
 

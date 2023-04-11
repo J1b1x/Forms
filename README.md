@@ -209,7 +209,7 @@ $player->sendForm(new CustomForm("Enter data", [
 ]));
 ```
 
-####From/to Data CustomForm. This can be useful if you want to send the same ui again, but with some changes, such as an error message label
+#### From/to Data CustomForm. This can be useful if you want to send the same ui again, but with some changes, such as an error message label
 ```php
 public function sendCustomForm(Player $player, array $data = [], ?string $message = null){
     $player->sendForm(new CustomForm(

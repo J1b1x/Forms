@@ -72,7 +72,7 @@ public function onServerSettingsForm(ServerSettingsFormEvent $event): void{
            $player->sendMessage("Done! You successfully adjusted the server settings.");
         },
         Image::path("textures/ui/diamond") //Set the icon of the form
-    ))
+    ));
 }
 ```
 

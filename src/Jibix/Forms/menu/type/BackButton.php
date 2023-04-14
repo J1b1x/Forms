@@ -16,7 +16,7 @@ class BackButton extends Button{
 
     public const BACK_ID = "back";
 
-    public function __construct(string $text = "%ui.button.back", ?Closure $onSubmit = null, ?Image $image = null){
+    public function __construct(string $text = "§cBack", ?Closure $onSubmit = null, ?Image $image = null){
         parent::__construct($text, $onSubmit, $image ?? Image::path("textures/ui/refresh_light"));
     }
 

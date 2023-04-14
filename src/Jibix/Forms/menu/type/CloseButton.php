@@ -14,7 +14,7 @@ use Jibix\Forms\menu\Image;
  */
 class CloseButton extends Button{
 
-    public function __construct(string $text = "%ui.button.close", ?Closure $onSubmit = null, ?Image $image = null){
+    public function __construct(string $text = "§cClose", ?Closure $onSubmit = null, ?Image $image = null){
         parent::__construct($text, $onSubmit, $image ?? Image::path("textures/ui/cancel"));
     }
 }

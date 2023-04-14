@@ -82,7 +82,7 @@ class CustomForm extends Form{
             $element->getOnSubmit()?->__invoke($player, $element);
         }
 
-        $this->onSubmit?->__invoke($player, new CustomFormResponse($this->elements));
+        $this->onSubmit->__invoke($player, new CustomFormResponse($this->elements));
     }
 
     final public function handleResponse(Player $player, mixed $data): void{

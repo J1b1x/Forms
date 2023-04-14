@@ -26,7 +26,7 @@ abstract class Element implements JsonSerializable{
             new ReturnType(),
             new ParameterType("player", Player::class),
             new ParameterType("element", static::class, ParameterType::CONTRAVARIANT | ParameterType::OPTIONAL)
-        ), $on_submit);
+        ), $onSubmit);
     }
 
     public function getText(): string{

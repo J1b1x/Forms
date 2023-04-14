@@ -1,6 +1,9 @@
 <?php
 namespace Jibix\Forms\element;
 use Closure;
+use DaveRandom\CallbackValidator\CallbackType;
+use DaveRandom\CallbackValidator\ParameterType;
+use DaveRandom\CallbackValidator\ReturnType;
 use Exception;
 use JsonSerializable;
 use pocketmine\player\Player;
@@ -19,7 +22,11 @@ abstract class Element implements JsonSerializable{
     protected mixed $value;
 
     public function __construct(protected string $text, protected ?Closure $onSubmit = null){
-        if ($onSubmit !== null) Utils::validateCallableSignature(function (Player $player, Element $selected){}, $onSubmit);
+        if ($onSubmit !== null) Utils::validateCallableSignature(new CallbackType(
+            new ReturnType(),
+            new ParameterType("player", Player::class),
+            new ParameterType("element", static::class, ParameterType::CONTRAVARIANT | ParameterType::OPTIONAL)
+        ), $on_submit);
     }
 
     public function getText(): string{

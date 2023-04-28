@@ -71,7 +71,7 @@ public function onServerSettingsForm(ServerSettingsFormEvent $event): void{
         function (Player $player, CustomFormResponse $response): void{
            $player->sendMessage("Done! You successfully adjusted the server settings.");
         },
-        Image::path("textures/ui/diamond") //Set the icon of the form
+        Image::path("textures/items/diamond") //Set the icon of the form
     ))->send($player);
 }
 ```

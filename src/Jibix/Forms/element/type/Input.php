@@ -31,8 +31,9 @@ class Input extends Element{
         return $this->default;
     }
 
-    public function setDefault(string $default): void{
+    public function setDefault(string $default): self{
         $this->default = $default;
+        return $this;
     }
 
 

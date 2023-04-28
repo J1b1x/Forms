@@ -26,8 +26,9 @@ class Toggle extends Element{
         return $this->default;
     }
 
-    public function setDefault(bool $default): void{
+    public function setDefault(bool $default): self{
         $this->default = $default;
+        return $this;
     }
 
     public function hasChanged(): bool{

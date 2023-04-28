@@ -47,8 +47,9 @@ class Slider extends Element{
         return $this->default;
     }
 
-    public function setDefault(float $default): void{
+    public function setDefault(float $default): self{
         $this->default = $default;
+        return $this;
     }
 
 

@@ -30,8 +30,9 @@ abstract class SelectElement extends Element{
         return $this->default;
     }
 
-    public function setDefault(int $default): void{
+    public function setDefault(int $default): self{
         $this->default = $default;
+        return $this;
     }
 
     public function getSelectedOption(): string{

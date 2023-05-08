@@ -1,0 +1,42 @@
+name: "Release"
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  release:
+    name: "Create stable release"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+
+      - name: Setup PHP 8.0
+        uses: shivammathur/setup-php@2.24.0
+        with:
+          php-version: 8.0
+          tools: composer
+          extensions: yaml gd2 gd
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Get data"
+        id: metadata
+        run: |
+          echo "VERSION=$(php -r 'echo explode("+", explode("-", yaml_parse_file(getcwd() . DIRECTORY_SEPARATOR . "plugin.yml")["version"])[0])[0];')" >> $GITHUB_OUTPUT
+          echo "FULL_VERSION=$(php -r 'echo yaml_parse_file(getcwd() . DIRECTORY_SEPARATOR .                                "plugin.yml")["version"];')" >> $GITHUB_OUTPUT
+          echo "NAME=$(php -r 'echo yaml_parse_file(getcwd() . DIRECTORY_SEPARATOR .                                                 "plugin.yml")["name"];')" >> $GITHUB_OUTPUT
+
+      - name: "Build phar"
+        run: "php -dphar.readonly=0 build.php"
+
+      - name: "Create Release"
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "v${{ steps.metadata.outputs.VERSION }}"
+          prerelease: false
+          title: "Stable Release v${{ steps.metadata.outputs.VERSION }}"
+          files: |
+            *.phar

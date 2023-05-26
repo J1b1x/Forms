@@ -1,0 +1,20 @@
+{
+    "name": "j1b1x/forms",
+    "autoload": {
+        "psr-4": {
+            "Jibix\\Forms\\": "src/Jibix/Forms/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jibix"
+        },
+        {
+            "name": "xxAROX",
+            "email": "arox.email.0@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "pocketmine/pocketmine-mp": "^4.20"
+    }
+}

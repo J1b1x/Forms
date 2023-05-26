@@ -35,7 +35,7 @@ class Image implements JsonSerializable{
     }
 
     public static function detect(string $data): self{
-        return str_starts_with("http", mb_strtolower($data)) ? self::url($data) : self::path($data);
+        return (str_starts_with("http", mb_strtolower($data)) ? self::url($data) : self::path($data));
     }
 
     public function jsonSerialize(): array{

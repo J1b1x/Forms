@@ -1,5 +1,6 @@
 <?php
 namespace Jibix\Forms\element\type;
+use Closure;
 use Jibix\Forms\element\Element;
 use pocketmine\form\FormValidationException;
 

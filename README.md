@@ -1,9 +1,9 @@
 # Forms
 
 ![php](https://img.shields.io/badge/php-8.0-informational)
-![api](https://img.shields.io/badge/pocketmine-4.0-informational)
+![api](https://img.shields.io/badge/pocketmine-5.0-informational)
 
-This is a PocketMine-MP 4.0 form library with PHP 8.0 support and high quality code
+This is a PocketMine-MP 5.0 form library with PHP 8.0 support and high quality code
 
 ## Credits
 This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms library](https://github.com/Frago9876543210/forms) and also includes a ServerSettingsForm which is inspired of [skymin's](https://github.com/sky-min) [ServerSettingsForm](https://github.com/sky-min/ServerSettingForm) virion and a [Image loading fix](#image-fix) which is inspired by [Muqsit's](https://github.com/Muqsit) [FormImagesFix](https://github.com/Muqsit/FormImagesFix) plugin. 

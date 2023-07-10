@@ -44,4 +44,9 @@ class Image implements JsonSerializable{
             "data" => $this->data,
         ];
     }
+
+    public static function fromData(array $data): ?self{
+        if (!isset($data['data'])) return null;
+        return isset($data['type']) ? new self($data['data'], $data['type']) : self::detect($data['data']);
+    }
 }

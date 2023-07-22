@@ -38,12 +38,19 @@ class MenuForm extends Form{
         return $this->buttons;
     }
 
+    public function addButton(Button $button): self
+    {
+        $this->buttons[] = $button;
+        return $this;
+    }
+
     public function getOnClose(): ?Closure{
         return $this->onClose;
     }
 
-    public function setOnClose(?Closure $onClose): void{
+    public function setOnClose(?Closure $onClose): self{
         $this->onClose = $onClose;
+        return $this;
     }
 
 

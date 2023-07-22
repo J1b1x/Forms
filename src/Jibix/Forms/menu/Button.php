@@ -34,8 +34,9 @@ class Button implements JsonSerializable{
         return $this->onSubmit;
     }
 
-    public function setOnSubmit(?Closure $onSubmit): void{
+    public function setOnSubmit(?Closure $onSubmit): self{
         $this->onSubmit = $onSubmit;
+        return $this;
     }
 
     public function getImage(): ?Image{

@@ -49,12 +49,23 @@ class CustomForm extends Form{
         return $this->elements;
     }
 
+    public function setElements(array $elements): self{
+        $this->elements = $elements;
+        return $this;
+    }
+
+    public function addElement(Element $element): self{
+        $this->elements[] = $element;
+        return $this;
+    }
+
     public function getOnClose(): ?Closure{
         return $this->onClose;
     }
 
-    public function setOnClose(?Closure $onClose): void{
+    public function setOnClose(?Closure $onClose): self{
         $this->onClose = $onClose;
+        return $this;
     }
 
 

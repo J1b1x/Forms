@@ -28,6 +28,11 @@ class ServerSettingsForm extends CustomForm{
         return $this->icon;
     }
 
+    public function setIcon(?Image $icon): self{
+        $this->icon = $icon;
+        return $this;
+    }
+
     protected function serializeFormData(): array{
         $data = parent::serializeFormData();
         if ($this->icon !== null) $data["icon"] = $this->icon;

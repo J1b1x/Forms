@@ -34,8 +34,23 @@ class MenuForm extends Form{
         return $this->content;
     }
 
+    public function setContent(string $content): self{
+        $this->content = $content;
+        return $this;
+    }
+
     public function getButtons(): array{
         return $this->buttons;
+    }
+
+    public function setButtons(array $buttons): self{
+        $this->buttons = $buttons;
+        return $this;
+    }
+
+    public function addButton(Button $button): self{
+        $this->buttons[] = $button;
+        return $this;
     }
 
     public function getOnClose(): ?Closure{

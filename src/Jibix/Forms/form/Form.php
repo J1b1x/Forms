@@ -29,6 +29,11 @@ abstract class Form implements \pocketmine\form\Form{
         return $this->title;
     }
 
+    public function setTitle(string $title): self{
+        $this->title = $title;
+        return $this;
+    }
+
     abstract protected function getType(): string;
     abstract protected function serializeFormData(): array;
 

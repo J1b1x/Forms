@@ -32,29 +32,29 @@ This API is a spoon of [Frago's](https://github.com/Frago9876543210) [forms libr
 
 ### Registration
 
-#### In order to use the [ServerSettingsForms](#serversettingsform), [ImageFix](#image-fix) and the [auto-back](#autoback) feature you first need to **register** the packet handler by doing
+In order to use the [ServerSettingsForms](#serversettingsform), [ImageFix](#image-fix) and the [auto-back](#autoback) feature you first need to **register** the packet handler by doing
 ```php
 protected function onEnable(): void{
     \Jibix\Forms\Forms::register($this);
 }
 ```
-#### Note: You only need to do this if you use this plugin as a virion, otherwise it's handled by the [Main class](https://github.com/J1b1x/Forms/blob/master/src/Jibix/Forms/Main.php)
+Note: You only need to do this if you use this plugin as a virion, otherwise it's handled by the [Main class](https://github.com/J1b1x/Forms/blob/master/src/Jibix/Forms/Main.php)
 
 ### Auto-back
-#### Auto-back is a feature that sends the previous opened form to the player once they close a form or click on a back button. It also overwrites back buttons in a [MenuForm](#menuform) with close buttons if there's no form to go back to
-#### If you want to use the auto-back feature, you just need to do
+Auto-back is a feature that sends the previous opened form to the player once they close a form or click on a back button. It also overwrites back buttons in a [MenuForm](#menuform) with close buttons if there's no form to go back to
+If you want to use the auto-back feature, you just need to do
 ```php
 \Jibix\Forms\Forms::setAutoBack(true);
 ```
 
 ## Image fix
-#### Image fix is a workaround for a MCPE MenuForm bug, where url button images take ages to load
-#### To make this work you only need to do the [registration](#registration)
+Image fix is a workaround for a MCPE MenuForm bug, where url button images take ages to load
+To make this work you only need to do the [registration](#registration)
 
 ### ServerSettingsForm
 
-#### The ServerSettingsForm is similar to a [CustomForm](#customform) and has the same elements, but will be displayed in the player's game-settings ui
-#### Once you have registered the packet handler, you can just use the ServerSettingsFormEvent
+The ServerSettingsForm is similar to a [CustomForm](#customform) and has the same elements, but will be displayed in the player's game-settings ui
+Once you have registered the packet handler, you can just use the ServerSettingsFormEvent
 
 ```php
 public function onServerSettingsForm(ServerSettingsFormEvent $event): void{
@@ -78,7 +78,7 @@ public function onServerSettingsForm(ServerSettingsFormEvent $event): void{
 
 ### ModalForm
 
-#### Using ModalForm to represent "yes" / "no" button clicks as `bool` in closure
+Using ModalForm to represent "yes" / "no" button clicks as `bool` in closure
 
 ```php
 $player->sendForm(new ModalForm("A small question", "Is our server cool?",
@@ -89,7 +89,7 @@ $player->sendForm(new ModalForm("A small question", "Is our server cool?",
 ));
 ```
 
-#### Short version of ModalForm to confirm any action
+Short version of ModalForm to confirm any action
 
 ```php
 $player->sendForm(ModalForm::confirm("Teleport request", "Do you want to accept it?",
@@ -102,7 +102,7 @@ $player->sendForm(ModalForm::confirm("Teleport request", "Do you want to accept 
 
 ### MenuForm
 
-#### Using MenuForm to display buttons with icons from URL and path
+Using MenuForm to display buttons with icons from URL and path
 
 ```php
 $player->sendForm(new MenuForm("Select server", "Choose server", [
@@ -122,7 +122,7 @@ $player->sendForm(new MenuForm("Select server", "Choose server", [
 }));
 ```
 
-#### Shorther/simpler MenuForm, you can directly set the button's onSubmit callback, which can be useful if you have object foreaches 
+Shorther/simpler MenuForm, you can directly set the button's onSubmit callback, which can be useful if you have object foreaches 
 
 ```php
 foreach ($objectArray as $key => $object) {
@@ -137,7 +137,7 @@ $player->sendForm(new MenuForm("Select key", "Choose key", $buttons));
 
 ### CustomForm
 
-#### Using CustomForm with strict-typed API
+Using CustomForm with strict-typed API
 
 ```php
 $player->sendForm(new CustomForm("Enter data", [
@@ -165,7 +165,7 @@ $player->sendForm(new CustomForm("Enter data", [
 }));
 ```
 
-#### Using CustomForm with less strict-typed API
+Using CustomForm with less strict-typed API
 
 ```php
 $player->sendForm(new CustomForm("Enter data", [
@@ -186,7 +186,7 @@ $player->sendForm(new CustomForm("Enter data", [
 }));
 ```
 
-#### Using CustomForms elements with directly setting their onSubmit callback
+Using CustomForms elements with directly setting their onSubmit callback
 
 ```php
 $player->sendForm(new CustomForm("Enter data", [
@@ -209,7 +209,7 @@ $player->sendForm(new CustomForm("Enter data", [
 ]));
 ```
 
-#### From/to Data CustomForm. This can be useful if you want to send the same ui again, but with some changes, such as an error message label
+From/to Data CustomForm. This can be useful if you want to send the same ui again, but with some changes, such as an error message label
 ```php
 public function sendCustomForm(Player $player, array $data = [], ?string $message = null){
     $player->sendForm(new CustomForm(
@@ -240,7 +240,7 @@ public function sendCustomForm(Player $player, array $data = [], ?string $messag
 
 ### Uncloseable form
 
-### An uncloseable form can be useful if you permanently want to display something to the player
+An uncloseable form can be useful if you permanently want to display something to the player
 ```php
 $player->sendForm(new MenuForm(
     "§cMaintenance",

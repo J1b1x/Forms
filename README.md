@@ -2,6 +2,7 @@
 
 ![php](https://img.shields.io/badge/php-8.0-informational)
 ![api](https://img.shields.io/badge/pocketmine-5.0-informational)
+#### ![GitHub all releases](https://img.shields.io/github/downloads/J1b1x/Forms/total?color=violet&label=Downloads&style=flat-square)
 
 This is a PocketMine-MP 5.0 form library with PHP 8.0 support and high quality code
 

@@ -16,5 +16,11 @@
     ],
     "require-dev": {
         "pocketmine/pocketmine-mp": "^5.0"
+    },
+    "extra": {
+        "virion": {
+            "spec": "3.0",
+            "namespace-root": "Jibix\\Forms"
+        }
     }
 }

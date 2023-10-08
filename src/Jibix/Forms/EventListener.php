@@ -25,7 +25,7 @@ class EventListener implements Listener{
         if ($packet instanceof ServerSettingsRequestPacket) {
             ServerSettingsHandler::handleRequest($event->getOrigin());
         } elseif ($packet instanceof NetworkStackLatencyPacket && $event->getOrigin()->getPlayer() !== null) {
-            if ($packet->timestamp == ServerSettingsHandler::getWaitId()) {
+            if (str_starts_with($packet->timestamp, ServerSettingsHandler::getWaitId())) {
                 ServerSettingsHandler::handleResponse($event->getOrigin());
             } else {
                 ImageFixHandler::handleResponse($event->getOrigin(), $packet->timestamp);

@@ -4,6 +4,7 @@ use Closure;
 use Jibix\Forms\form\Form;
 use Jibix\Forms\form\response\autoback\AutoBackHandler;
 use Jibix\Forms\menu\Button;
+use Jibix\Forms\menu\type\BackButton;
 use pocketmine\form\FormValidationException;
 use pocketmine\player\Player;
 use pocketmine\utils\Utils;
@@ -81,10 +82,12 @@ class MenuForm extends Form{
         if ($data === null) {
             $this->onClose?->__invoke($player);
         } elseif (is_int($data)) {
-            AutoBackHandler::storeLastForm($player, $this);
             $button = $this->getButton($data)->setValue($data);
             $button->getOnSubmit()?->__invoke($player, $button);
-            $this->onSubmit?->__invoke($player, $button);
+            if (!$button instanceof BackButton) {
+                AutoBackHandler::storeLastForm($player, $this);
+                $this->onSubmit?->__invoke($player, $button);
+            }
         } else {
             throw new FormValidationException("Expected int or null, got " . gettype($data));
         }

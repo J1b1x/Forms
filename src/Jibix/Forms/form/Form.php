@@ -22,7 +22,6 @@ abstract class Form implements \pocketmine\form\Form{
         };
     }
 
-
     public function __construct(protected string $title){}
 
     public function getTitle(): string{

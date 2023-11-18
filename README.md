@@ -191,17 +191,17 @@ Using CustomForms elements with directly setting their onSubmit callback
 
 ```php
 $player->sendForm(new CustomForm("Enter data", [
-	new Dropdown("Select product #1", ["beer", "cheese", "cola"], function (Player $player, Dropdown $dropdown): void{
+	new Dropdown("Select product #1", ["beer", "cheese", "cola"], "", function (Player $player, Dropdown $dropdown): void{
 	    $player->sendMessage("Your first product is {$dropdown->getSelectedOption()}");
 	}),
-	new Input("Enter your name", "Bob", function (Player $player, Input $input): void{
+	new Input("Enter your name", "Bob", "", function (Player $player, Input $input): void{
 	    $player->sendMessage("You entered the name: {$input->getValue()}!");
 	}),
 	new Label("I am label!"),
 	new Slider("Select count", 0.0, 100.0, 1.0, 50.0, function (Player $player, Slider $slider): void{
 	    $player->sendMessgae("You selected a count of {$slider->getValue()}");
 	}),
-	new StepSlider("Select product #2", ["beef", "fanta", "chips"], function (Player $player, StepSlider $slider): void{
+	new StepSlider("Select product #2", ["beef", "fanta", "chips"], "", function (Player $player, StepSlider $slider): void{
 	    $player->sendMessage("Your second product is {$slider->getSelectedOption()}");
 	}),
 	new Toggle("Creative", $player->isCreative(), function (Player $player, Toggle $toggle): void{

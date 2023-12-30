@@ -19,15 +19,19 @@ use pocketmine\utils\Utils;
  */
 class MenuForm extends Form{
 
+    /** @var Button[] */
+    protected array $buttons = [];
+
     public function __construct(
         string $title,
         protected string $content = "",
-        protected array $buttons = [],
+        array $buttons = [],
         protected ?Closure $onSubmit = null,
         protected ?Closure $onClose = null,
     ){
         if ($onSubmit !== null) Utils::validateCallableSignature(function (Player $player, Button $selected){}, $onSubmit);
         if ($onClose !== null) Utils::validateCallableSignature(function (Player $player){}, $onClose);
+        $this->buttons = array_values($buttons);
         parent::__construct($title);
     }
 

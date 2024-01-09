@@ -13,13 +13,16 @@ use pocketmine\form\FormValidationException;
  */
 abstract class SelectElement extends Element{
 
+    protected array $options = [];
+
     public function __construct(
         string $text,
-        protected array $options = [],
+        array $options = [],
         protected int $default = 0,
         ?Closure $onSubmit = null
     ){
         parent::__construct($text, $onSubmit);
+        $this->options = array_values($options);
     }
 
     public function getOptions(): array{

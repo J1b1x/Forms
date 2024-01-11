@@ -22,7 +22,9 @@ abstract class SelectElement extends Element{
         ?Closure $onSubmit = null
     ){
         parent::__construct($text, $onSubmit);
-        $this->options = array_values($options);
+        foreach ($options as $option) {
+            $this->options[] = (string)$option;
+        }
     }
 
     public function getOptions(): array{
@@ -44,6 +46,6 @@ abstract class SelectElement extends Element{
 
     protected function validateValue(mixed $value): void{
         if (!is_int($value)) throw new FormValidationException("Expected int, got " . gettype($value));
-        if (!isset($this->options[$value])) throw new FormValidationException("Option {$value} does not exist");
+        if (!isset($this->options[$value])) throw new FormValidationException("Option $value does not exist");
     }
 }

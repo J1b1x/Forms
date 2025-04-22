@@ -106,10 +106,6 @@ function out(string $message): void {
 }
 
 
-/**
- * Function startServer
- * @return void
- */
 function startServer(): void{
 	exit;
 }

@@ -1,4 +1,4 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/J1b1x/Forms
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/J1b1x/Formss
 build-by-default: true
 branches:
 - master

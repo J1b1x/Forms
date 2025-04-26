@@ -87,11 +87,9 @@ class MenuForm extends Form{
             $this->onClose?->__invoke($player);
         } elseif (is_int($data)) {
             $button = $this->getButton($data)->setValue($data);
+            if ($value = !$button instanceof BackButton) AutoBackHandler::storeLastForm($player, $this);
             $button->getOnSubmit()?->__invoke($player, $button);
-            if (!$button instanceof BackButton) {
-                AutoBackHandler::storeLastForm($player, $this);
-                $this->onSubmit?->__invoke($player, $button);
-            }
+            if ($value) $this->onSubmit?->__invoke($player, $button);
         } else {
             throw new FormValidationException("Expected int or null, got " . gettype($data));
         }
